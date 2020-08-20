@@ -4,7 +4,7 @@ import { RouterModule } from "@angular/router";
 import { HttpClientModule } from "@angular/common/http";
 import { ReactiveFormsModule } from "@angular/forms";
 
-import { provideErrorInterceptor } from "./error.interceptor";
+import { provideAuthInterceptor } from "./auth.interceptor";
 import { LoginComponent } from "./login.component";
 import { LogoutDirective } from "./logout.directive";
 //import { AuthService } from "./auth.service";
@@ -25,7 +25,7 @@ export class AuthModule {
 	static forRoot(): ModuleWithProviders<AuthModule> {
 		return {
 			ngModule: AuthModule,
-			providers: [provideErrorInterceptor /*, AuthService, AuthGuard*/]
+			providers: [provideAuthInterceptor /*, AuthService, AuthGuard*/]
 		};
 	}
 }

@@ -1,0 +1,12 @@
+{
+	"recommendations": [
+		// "angular.ng-template",
+		// "ghaschel.vscode-angular-html",
+		// "esbenp.prettier-vscode",
+		// "formulahendry.auto-rename-tag",
+		// "patbenatar.advanced-new-file",
+		"CoenraadS.bracket-pair-colorizer-2",
+		"msjsdiag.debugger-for-chrome",
+		"ms-vscode-remote.remote-containers"
+	]
+}

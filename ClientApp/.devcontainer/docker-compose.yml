@@ -1,0 +1,20 @@
+version: "2.4"
+services:
+    ng10:
+        build:
+            context: .
+            # Location is relative to folder containing this compose file
+            dockerfile: Dockerfile
+        volumes:
+            - ..:/workspace
+            # IMPORTANT: use same volume-name set below
+            - ng10_node_modules:/workspace/node_modules
+        ports:
+            # IMPORTANT: remember to bind network in ng serve --host 0.0.0.0
+            - "4200:4200"
+        command:
+            /bin/sh -c "while sleep 1000; do :; done"
+            # Keep container running after compose up
+volumes:
+    ng10_node_modules:
+        # Automatic create volume used for optimize node_modules

@@ -7,7 +7,7 @@ import { catchError } from "rxjs/operators";
 import { AuthService } from "./auth.service";
 
 @Injectable()
-export class ErrorInterceptor implements HttpInterceptor {
+export class AuthInterceptor implements HttpInterceptor {
 	constructor(private authService: AuthService, private router: Router) {}
 
 	intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -34,8 +34,8 @@ export class ErrorInterceptor implements HttpInterceptor {
 	}
 }
 
-export const provideErrorInterceptor = {
+export const provideAuthInterceptor = {
 	provide: HTTP_INTERCEPTORS,
-	useClass: ErrorInterceptor,
+	useClass: AuthInterceptor,
 	multi: true
 };

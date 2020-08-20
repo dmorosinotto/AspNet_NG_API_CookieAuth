@@ -158,18 +158,17 @@ namespace AspNet.NGAPI
                 // To learn more about options for serving an Angular SPA from ASP.NET Core,
                 // see https://go.microsoft.com/fwlink/?linkid=864501
 
-                spa.Options.SourcePath = "ClientApp"; //TODO: CAPIRE SE SPOSTO CARTELLA ClientApp SE DEVO AGGIORNARE (SERVE SE USO spa.UseAngularCliServer(npmScript: "start") X I PUNTAMENTI AI SORGENTI PER TROVARE DOVE LANCIARE SCRIPT package.json) 
+                //spa.Options.SourcePath = "ClientApp"; //TODO: CAPIRE SE SPOSTO CARTELLA ClientApp SE DEVO AGGIORNARE (SERVE SE USO spa.UseAngularCliServer(npmScript: "start") X I PUNTAMENTI AI SORGENTI PER TROVARE DOVE LANCIARE SCRIPT package.json) 
 
                 //spa.Options.DefaultPage = default "/index.html";
                 //spa.Options.DefaultPageStaticFileOptions = null; //CONFIGURO StaticFile PER SERVIRE SPA SE SETTO =null -> USA default WebRootPath = LEGGE FILE STATICI DA /wwwroot
 
                 if (env.IsDevelopment())
                 {
-                    spa.UseAngularCliServer(npmScript: "start"); //CON QUESTA CONFIGURAZIONE FA PARTIRE IN AUTOMATICO UN npm start E FA PROXY VERO localhost:4200 PERO' HO PROBLEMA CHE OGNI VOLTA RICOMPILA C# FA ANCHE RIPARTIRE COMPILAZIONE ng serve
-                    /*
+                    /*spa.UseAngularCliServer(npmScript: "start"); //CON QUESTA CONFIGURAZIONE FA PARTIRE IN AUTOMATICO UN npm start E FA PROXY VERO localhost:4200 PERO' HO PROBLEMA CHE OGNI VOLTA RICOMPILA C# FA ANCHE RIPARTIRE COMPILAZIONE ng serve
+                    */
                     // QUESTA CONFIGURA ESPLICITA NECESSITA CHE IO FACCIA PARTIRE A MANO ng serve MA RENDE INDIPENDENTE COMPILAZIONE C# DA QUELLA DI ng + POSSO USARE DOCKER CONTAINER PER GESTIRE node_modules + ANGULAR ESPONENDO localhost:4200
                     spa.UseProxyToSpaDevelopmentServer("http://localhost:4200");
-                    */
                 }
             });
         }

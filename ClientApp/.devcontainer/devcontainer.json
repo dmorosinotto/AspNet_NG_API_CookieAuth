@@ -1,0 +1,42 @@
+// For format details, see https://aka.ms/vscode-remote/devcontainer.json or the definition README at
+// https://github.com/microsoft/vscode-dev-containers/tree/master/containers/javascript-node-8
+{
+	"name": "NG10 ClientApp",
+	// POINT TO COMPOSE FILE + SERVICE TO START
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "ng10",
+	"shutdownAction": "stopCompose",
+	// Use 'settings' to set *default* container specific settings.json values on container create.
+	// You can edit these settings after create using File > Preferences > Settings > Remote.
+	"settings": {
+		"terminal.integrated.shell.linux": "/bin/bash"
+	},
+	// Comment the next line publish any ports in Compose.
+	// IMPORTANT: REMEMBER TO BIND NETWORK>	ng serve --host 0.0.0.0
+	// "appPort": ["4200:4200"],
+	// Uncomment the next line to run commands after the container is created.
+	"postCreateCommand": "npm ci",
+	// Uncomment the next line to use a non-root user. On Linux, this will prevent
+	// new files getting created as root, but you may need to update the USER_UID
+	// and USER_GID in .devcontainer/Dockerfile to match your user if not 1000.
+	// "runArgs": [ "-u", "node" ],
+	// Improve disk perfomance using Docker volume for node_modules
+	// IMPORTANT: NO NEED TO FIRST CREATE VOLUME JUST DEFINE IN Compose
+	// AND THEN 1ST TIME RUN INSTALL>	npm ci
+	// "workspaceMount": "src=${localWorkspaceFolder},dst=/workspace,type=bind,consistency=cached",
+	"workspaceFolder": "/workspace",
+	// "runArgs": [
+	//	"-v", "slim-node_modules:/workspace/node_modules"
+	// ],
+	// Add the IDs of extensions you want installed when the container is created in the array below.
+	"extensions": [
+		"angular.ng-template",
+		"ghaschel.vscode-angular-html",
+		"esbenp.prettier-vscode",
+		"CoenraadS.bracket-pair-colorizer-2",
+		"formulahendry.auto-rename-tag",
+		"patbenatar.advanced-new-file"
+		//"pflannery.vscode-versionlens"
+		//"msjsdiag.debugger-for-chrome"
+	]
+}
