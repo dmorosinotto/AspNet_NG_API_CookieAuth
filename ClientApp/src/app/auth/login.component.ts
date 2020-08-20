@@ -16,7 +16,6 @@ import { AuthService } from "./auth.service";
 	`
 })
 export class LoginComponent {
-	public returnTo: string;
 	public frm = new FormGroup({
 		Username: new FormControl("", Validators.required),
 		Password: new FormControl("", Validators.required)

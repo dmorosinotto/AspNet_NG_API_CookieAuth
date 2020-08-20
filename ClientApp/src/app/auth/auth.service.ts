@@ -14,7 +14,7 @@ interface IUserProfile {}
 @Injectable({ providedIn: "root" })
 export class AuthService {
 	private readonly _authUrl!: string;
-	private _userProfile = new BehaviorSubject<IUserProfile>(null);
+	private _userProfile = new BehaviorSubject<IUserProfile | null>(null);
 
 	constructor(private http: HttpClient, @Inject("BASE_URL") baseUrl: string, private router: Router) {
 		this._authUrl = baseUrl + "auth/login";
@@ -32,7 +32,7 @@ export class AuthService {
 				return Boolean(data);
 			})
 			.catch(err => {
-				this._userProfile = null;
+				this._userProfile.next(null);
 				console.error("LOGIN ERROR", err);
 				return false;
 			});
@@ -51,7 +51,7 @@ export class AuthService {
 	public userProfile$ = this._userProfile.asObservable();
 	public isLoggedIn$ = this._userProfile.pipe(map(u => !!u));
 
-	private _hasRole = (user: IUserProfile, role?: string) => !!role || true; //FAKE PER ORA NON GESTICO RUOLI
+	private _hasRole = (user: IUserProfile | null, role?: string) => !!role || true; //FAKE PER ORA NON GESTICO RUOLI
 	public inRole = (role?: string) => this._hasRole(this._userProfile.getValue, role);
 	public isInRole$ = (role?: string) => this._userProfile.pipe(map(u => this._hasRole(u, role)));
 }
